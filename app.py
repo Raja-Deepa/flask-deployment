@@ -1,11 +1,7 @@
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
-@app.route("/")
-def index():
-    return "Welcome to my Flask application!"
 
-@app.route("/")
 @app.route('/bfhl', methods=['POST'])
 def process_data():
     data = request.json.get('data', [])
@@ -24,10 +20,9 @@ def process_data():
     }
     return jsonify(response)
 
-@app.route('/bfhl', methods=['GET'])
-def get_operation_code():
-    return jsonify({"operation_code": 1})
-
+@app.route('/', methods=['GET'])
+def index():
+    return "Welcome to BFHL API"
 if __name__ == '__main__':
     app.run(debug=True)
 
